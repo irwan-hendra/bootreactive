@@ -1,0 +1,15 @@
+logging:
+  level:
+    root: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,beans,env, metrics
+
+server:
+  tomcat:
+    threads:
+      max: 10
+      min-spare: 10

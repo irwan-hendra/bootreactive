@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/customerinfo"
+  },
+  "response": {
+    "status": 200,
+    "fixedDelayMilliseconds": 5000,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": [
+      {
+        "id": 1,
+        "name": "John"
+      },
+      {
+        "id": 2,
+        "name": "Tony"
+      },
+      {
+        "id": 3,
+        "name": "David"
+      },
+      {
+        "id": 4,
+        "name": "Alex"
+      },
+      {
+        "id": 5,
+        "name": "Zod"
+      }
+    ]
+  }
+}
