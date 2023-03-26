@@ -74,7 +74,7 @@ class ConcurrentSimulation extends Simulation {
     // scn3.inject(atOnceUsers(30)),
     // scn4.inject(atOnceUsers(30)),
     // scn5.inject(atOnceUsers(30))
-    scn6.inject(atOnceUsers(30))
-    //scn7.inject(atOnceUsers(30))
+    //scn6.inject(atOnceUsers(30))
+    scn7.inject(atOnceUsers(30))
   ).protocols(httpProtocol)
 }

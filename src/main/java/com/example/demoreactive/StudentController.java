@@ -23,8 +23,9 @@ public class StudentController {
 
   private final RestTemplate restTemplate;
   private final Scheduler schedulerParlOfTwo = Schedulers.newParallel("np", 2); // 2 CPUs
-  private final Scheduler schedulerParlOfFour = Schedulers.newParallel("np", 4); // 4 CPUs
+
   private final WebClient client = WebClient.create("http://localhost:9090");
+  private final Scheduler schedulerParlOfFour = Schedulers.newParallel("np", 4); // 4 CPUs
   private AtomicInteger txnIdGen = new AtomicInteger(0); // unique id just for logging purpose
 
   @GetMapping(path = "studentsresttemplate", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -39,7 +40,6 @@ public class StudentController {
         ", Duration: " + ChronoUnit.MILLIS.between(result.getStartDtm(), result.getEndDtm()));
     return result;
   }
-
 
   @GetMapping(path = "studentsreactiveblocking", produces = MediaType.APPLICATION_JSON_VALUE)
   public Result getStudentsWebClientBlocking() throws Exception {
@@ -64,7 +64,6 @@ public class StudentController {
     return result;
   }
 
-
   @GetMapping(path = "studentsreactive", produces = MediaType.APPLICATION_JSON_VALUE)
   public Mono<Result> getStudentsReactive() throws Exception {
     Result result = createResultObject();
@@ -81,7 +80,6 @@ public class StudentController {
             ", EndDtm: " + result.getEndDtm() +
             ", Duration: " + ChronoUnit.MILLIS.between(result.getStartDtm(), result.getEndDtm())));
   }
-
 
   @GetMapping(path = "calcpi", produces = MediaType.APPLICATION_JSON_VALUE)
   public Result getCalcPi(@RequestParam Long iterations) throws Exception {
@@ -104,7 +102,6 @@ public class StudentController {
           result.setPiResult(calcPi(i));
           return result;
         })
-        //.subscribeOn(scheduler)
         .doOnNext(p -> {
               result.setEndDtm(LocalDateTime.now());
               log.info("Pi txnId: " + result.getTxnId() +
